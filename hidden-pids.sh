@@ -5,38 +5,27 @@
 # Inspired by:
 # https://github.com/sandflysecurity/sandfly-processdecloak/blob/master/processutils/processutils.go
 
-if [[ $EUID != 0 ]]; then
-  echo "* WARNING: For accurate output, run $0 as uid 0"
-fi
+[[ $EUID != 0 ]] && echo "* WARNING: For accurate output, run $0 as uid 0"
 
 declare -A visible
 cd /proc || exit
+
 start=$(date +%s)
 for pid in *; do
     visible[$pid]=1
 done
 
-max=$(cat /proc/sys/kernel/pid_max)
-echo "- Scanning hidden pids from 1 to ${max} ..."
-for i in $(seq 1 "${max}"); do
-    if [[ ! -e /proc/$i/status ]]; then
-        continue
-    fi
-    if [[ ${visible[$i]} = 1 ]]; then
-        continue
-    fi
+echo "Scanning for hidden pids ..."
 
-    if [[ $(stat -c %Z /proc/$$) -gt $start ]]; then
-        continue
-    fi
+for i in $(seq 2 "$(cat /proc/sys/kernel/pid_max)"); do
+    [[ ${visible[$i]} = 1 ]] && continue
+    [[ ! -e /proc/$i/status ]] && continue
+    [[ $(stat -c %Z /proc/$i) -ge $start ]] && continue
 
-    # This process is actually a thread
-    if [[ $(awk '/Tgid/{ print $2 }' "/proc/${i}/status") != "${i}" ]]; then
-        continue
-    fi
+    #  pid is a kernel thread
+    [[ $(awk '/Tgid/{ print $2 }' "/proc/${i}/status") != "${i}" ]] && continue
 
     exe=$(readlink "/proc/$i/exe")
     cmdline=$(tr '\000' ' ' <"/proc/$i/cmdline")
-    name=$(cat "/proc/$i/comm")
-    echo "HIDDEN: ${name}[${i}] is running ${exe}: ${cmdline}"
+    echo "- hidden $(cat /proc/$i/comm)[${i}] is running ${exe}: ${cmdline}"
 done
