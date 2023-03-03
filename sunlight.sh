@@ -7,7 +7,7 @@ if [[ $EUID != 0 ]]; then
   echo ""
 fi
 
-programs="deleted-or-replaced fake-name hidden-parent-pid hidden-pids thieves"
+programs="deleted-or-replaced fake-name hidden-parent-pid hidden-pids thieves kernel-taint"
 
 for program in $programs
 do
