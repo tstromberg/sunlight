@@ -1,4 +1,8 @@
 #!/bin/bash
+#
+# Find processes who have hidden parent IDs
+
+[[ $(uname) != "Linux" ]] && exit 0
 
 cd /proc || exit
 

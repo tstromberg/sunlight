@@ -29,4 +29,4 @@ osqueryi \
     --read_max=4096000000 \
     --config_path=osquery.conf \
     --pack detection \
-    2>&1 | grep -Ev "_events|Error reading the query pack"
+    2>&1 | grep -Ev "_events|Error reading the query pack" || exit 0

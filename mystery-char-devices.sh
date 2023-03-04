@@ -2,6 +2,8 @@
 # Uncover mysterious character devices
 # Based on https://www.kernel.org/doc/Documentation/admin-guide/devices.txt
 
+[[ $(uname) != "Linux" ]] && exit 0
+
 declare -A expected_major=(
     [1]="memory"
     [2]="pty master"

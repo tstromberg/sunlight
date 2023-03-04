@@ -5,6 +5,7 @@
 # Inspired by:
 # https://github.com/sandflysecurity/sandfly-processdecloak/blob/master/processutils/processutils.go
 
+[[ $(uname) != "Linux" ]] && exit 0
 [[ $EUID != 0 ]] && echo "* WARNING: For accurate output, run $0 as uid 0"
 
 declare -A visible

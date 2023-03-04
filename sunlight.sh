@@ -7,10 +7,18 @@ if [[ $EUID != 0 ]]; then
   echo ""
 fi
 
+failures=""
 for program in *.sh
 do
   [[ ${program} == "sunlight.sh" ]] && continue
   printf "%-80.80s\n" "-- [ ${program} ] -------------------------------------------------------------"
-  ./${program}
+  ./${program} || { e=$?; echo "failed with $e"; failures="${failures} ${program}"; }
   echo ""
 done
+
+
+if [[ "${failures}" != "" ]]; then
+  echo ""
+  echo "** failed scripts: ${failures}"
+  exit 1;
+fi

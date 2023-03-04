@@ -1,4 +1,7 @@
 #!/bin/bash
+#
+# Uncover unexpected programs that are faking their name
+
 declare -A expected=(
     ["/bin/bash"]=1
     ["/bin/dash"]=1

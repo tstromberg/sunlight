@@ -1,4 +1,8 @@
 #!/bin/bash
+# Reveal programs whose process space may have been taken over by another program
+
+[[ $(uname) != "Linux" ]] && exit 0
+
 cd /proc
 for i in *; do
   if [[ ! -f $i/exe || $i =~ "self" || $i == $$ ]]; then
