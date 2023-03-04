@@ -15,8 +15,6 @@ for pid in *; do
     visible[$pid]=1
 done
 
-echo "Scanning for hidden pids ..."
-
 for i in $(seq 2 "$(cat /proc/sys/kernel/pid_max)"); do
     [[ ${visible[$i]} = 1 ]] && continue
     [[ ! -e /proc/$i/status ]] && continue

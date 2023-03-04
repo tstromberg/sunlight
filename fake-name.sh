@@ -1,5 +1,18 @@
 #!/bin/bash
-cd /proc
+declare -A expected=(
+    ["/bin/bash"]=1
+    ["/bin/dash"]=1
+    ["/usr/bin/bash"]=1
+    ["/usr/bin/perl"]=1
+    ["/usr/bin/udevadm"]=1
+    ["/usr/lib/electron##/electron"]=1
+    ["/usr/lib/firefox/firefox"]=1
+    ["/usr/lib/systemd/systemd"]=1
+    ["/usr/local/bin/rootlesskit"]=1
+    ["/usr/bin/python#.#"]=1
+)
+
+cd /proc || exit 1
 for i in *; do
   [[ ! -f $i/exe || $i =~ "self" ]] && continue
 
@@ -11,5 +24,7 @@ for i in *; do
 
   [[ "${path}" =~ "${short_name}" || "${name}" =~ "${short_base}" ]] && continue
 
-  printf "%8.8s %16.16s %s\n" $i "${name}" "${path}"
+  pattern=$(echo $path | tr '[0-9]' '#')
+  [[ ${expected[$pattern]} == 1 ]] && continue
+  printf "%8.8s %16.16s %s %s\n" $i "${name}" "${path}"
 done

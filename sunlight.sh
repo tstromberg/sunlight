@@ -7,11 +7,10 @@ if [[ $EUID != 0 ]]; then
   echo ""
 fi
 
-programs="deleted-or-replaced fake-name hidden-parent-pid hidden-pids thieves kernel-taint"
-
-for program in $programs
+for program in *.sh
 do
-  echo "-- [ ${program} ] -----------------------------------------------"
-  ./${program}.sh
+  [[ ${program} == "sunlight.sh" ]] && continue
+  printf "%-80.80s\n" "-- [ ${program} ] -------------------------------------------------------------"
+  ./${program}
   echo ""
 done

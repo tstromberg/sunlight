@@ -2,6 +2,8 @@
 #
 # Diagnose tainted kernels, as described by https://docs.kernel.org/admin-guide/tainted-kernels.html
 
+[[ $EUID != 0 ]] && echo "* WARNING: For full output, run $0 as uid 0"
+
 declare -A table=(
     [0]="proprietary module was loaded"
     [1]="module was force loaded"
@@ -38,4 +40,4 @@ done
 
 echo ""
 echo "dmesg:"
-sudo dmesg | grep taint
+dmesg | grep taint
