@@ -25,5 +25,5 @@ jobs:
          sudo dpkg -i osquery_5.7.0-1.linux_amd64.deb
 
       - name: verify
-        run: ./sunlight.sh
+        run: sudo ./sunlight.sh
 
