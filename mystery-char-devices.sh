@@ -27,6 +27,7 @@ declare -A expected_major=(
     [202]="msr"
     [203]="cpu"
     [226]="dri"
+    [229]="hvc"
 )
 
 declare -A expected_low=(
@@ -41,6 +42,7 @@ declare -A expected_low=(
     ["rtc"]=1
     ["watchdog"]=1
     ["tpmrm"]=1
+    ["vportp"]=1
 )
 
 declare -A expected_high=(
