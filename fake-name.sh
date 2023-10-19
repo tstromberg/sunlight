@@ -14,6 +14,7 @@ declare -A expected=(
     ["/usr/local/bin/rootlesskit"]=1
     ["/usr/bin/python#.#"]=1
     ["/usr/bin/python#.##"]=1
+    ["/usr/lib/systemd/systemd"]=1
 )
 
 cd /proc || exit 1
