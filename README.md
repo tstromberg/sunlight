@@ -4,7 +4,7 @@
 [![Latest Release](https://img.shields.io/github/v/release/tstromberg/sunlight?include_prereleases)](https://github.com/tstromberg/sunlight/releases/latest)
 [![stable](https://badges.github.io/stability-badges/dist/stable.svg)](https://github.com/badges/stability-badges)
 
-sunlight is a tool to reveal Linux rootkits and other malware. It's also written in bash, so it's easy to understand.
+sunlight is a tool to reveal Linux rootkits (including eBPF) and other malware. It's written in bash, so it's easy to understand or take apart.
 
 ## Requirements
 
@@ -15,8 +15,8 @@ The following are required:
 
 The following are optional but recommended:
 
-* osquery, curl, unzip - to uncover suspicious processes
-* bpftool - to uncover eBPF rootkits
+* `osquery`, `curl`, `unzip` - comprehensive process analysis
+* `bpftool`, `jq` - eBPF analysis
 
 ## Usage
 
