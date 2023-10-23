@@ -131,6 +131,9 @@ low dynamic major device etx_device[247]
 * Found interface with network traffic-control filtering enabled (tc qdisc):
 qdisc clsact ffff: dev eth0 parent ffff:fff1 
 
+* Found unexpected eBPF filesystem entry:
+/sys/fs/bpf/backdoor_phantom_shell
+
 * Unexpected eBPF map found:
 {
   "id": 9,

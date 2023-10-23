@@ -18,8 +18,16 @@ if type -P tc >/dev/null; then
     fi
 fi
 
+
+entries=$(sudo find /sys/fs/bpf ! -name ip ! -name xdp ! -name tc ! -name globals ! -name bpf)
+if [[ "$entries" != "" ]]; then
+  echo "* Found unexpected eBPF filesystem entry:"
+  echo "${entries}"
+  echo ""
+fi
+
 if ! type -P bpftool >/dev/null; then
-    echo "exiting early as the rest requires bpftool"
+    echo "exiting early, as the remaining parts require bpftool"
     exit 0
 fi
 
