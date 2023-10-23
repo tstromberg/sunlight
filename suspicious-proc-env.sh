@@ -14,7 +14,7 @@ cd /proc || exit
 for i in *; do
   [[ ! -f $i/environ || $i =~ "self" ]] && continue
 
-    matches=$(xargs -0 -L1 -a "/proc/${i}/environ" 2>/dev/null | grep -E "LD_LIBRARY_PATH|LD_PRELOAD|HISTCONTROL|HISTFILE" | grep -v _history)
+    matches=$(xargs -0 -L1 -a "/proc/${i}/environ" 2>/dev/null | grep -E "LD_LIBRARY_PATH|LD_PRELOAD|HISTCONTROL|HISTFILE" | grep -Ev "_history|=ignoredups")
     if [[ "${matches}" = "" ]]; then
         continue
     fi

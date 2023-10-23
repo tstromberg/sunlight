@@ -23,6 +23,11 @@ for inode in $(grep -Ev "^sk|\s888e\s" /proc/net/packet | awk '{ print $9 }'); d
       continue
     fi
 
+    if [[ "${path}" = "//usr/sbin/NetworkManager" ]]; then
+      continue
+    fi
+
+
     echo "Raw packet sniffer: ${name} [${pid}] at ${path}:"
     grep -E "^sk|\s${inode}" /proc/net/packet
     echo ""

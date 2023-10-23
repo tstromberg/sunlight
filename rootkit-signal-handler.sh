@@ -6,11 +6,6 @@ set -u
 # Currently Linux only because we don't look up kernel modules in the correct place
 [[ $(uname) != "Linux" ]] && exit 0
 
-if [[ $EUID == 0 ]]; then
-  echo "NOTE: root-escalation detection requires a non-root user"
-fi
-
-
 for sig in $(seq 0 64); do
     trap "" "${sig}"
 done

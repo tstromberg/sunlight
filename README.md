@@ -4,13 +4,19 @@
 [![Latest Release](https://img.shields.io/github/v/release/tstromberg/sunlight?include_prereleases)](https://github.com/tstromberg/sunlight/releases/latest)
 [![stable](https://badges.github.io/stability-badges/dist/stable.svg)](https://github.com/badges/stability-badges)
 
-Shell scripts that reveal rootkits and other weird processes
+sunlight is a tool to reveal Linux rootkits and other malware. It's also written in bash, so it's easy to understand.
 
 ## Requirements
 
+The following are required:
+
 * Linux (some checks work on other UNIX platforms)
 * bash
-* osquery (optional, but recommended for check completeness)
+
+The following are optional but recommended:
+
+* osquery, curl, unzip - to uncover suspicious processes
+* bpftool - to uncover eBPF rootkits
 
 ## Usage
 
@@ -25,7 +31,6 @@ To run a single script:
 ```shell
 ./mystery-char-device.sh
 ```
-
 
 ## Example output (Qubitstrike)
 
@@ -117,4 +122,26 @@ dmesg:
 low dynamic major device etx_device[247]
 * crw------- 1 root root 247, 0 Mar  3 19:48 /dev/etx_device
 * /proc/devices: 247 etx_Dev
+```
+
+## Example output (TripleCross, an eBPF rootkit)
+
+```log
+-- [ unexpected-ebpf-hooks.sh ] ------------------------------------------------
+* Found interface with network traffic-control filtering enabled (tc qdisc):
+qdisc clsact ffff: dev eth0 parent ffff:fff1 
+
+* Unexpected eBPF map found:
+{
+  "id": 9,
+  "type": "hash",
+  "name": "backdoor_phanto",
+  "flags": 0,
+  "bytes_key": 8,
+  "bytes_value": 76,
+  "max_entries": 1,
+  "bytes_memlock": 4096,
+  "frozen": 0,
+  "btf_id": 92
+}
 ```

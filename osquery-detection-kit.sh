@@ -2,7 +2,7 @@
 # If osquery is installed, see if osquery-detection-kit picks up anything interesting.
 
 if ! type -P osqueryi >/dev/null; then
-    echo "skipping, requires osqueryi (INSTALLATION HIGHLY RECOMMENDED)"
+    echo "skipping, requires osquery (installation recommended)"
     exit 0
 fi
 
@@ -11,6 +11,10 @@ if ! type -P curl >/dev/null; then
     exit 0
 fi
 
+if ! type -P unzip >/dev/null; then
+    echo "skipping, requires unzip"
+    exit 0
+fi
 
 [[ $EUID != 0 ]] && echo "* WARNING: For accurate output, run $0 as uid 0"
 

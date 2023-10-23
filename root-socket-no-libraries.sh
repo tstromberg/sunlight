@@ -33,6 +33,7 @@ for pid in *; do
     path=$(readlink /proc/$pid/exe)
 
     [[ ${false_positive[$path]} == 1 ]] && continue
+    [[ "${path}" == "/usr/sbin/agetty" ]] && continue
 
     name=$(cat /proc/$pid/comm)
     echo "found euid=0 process with sockets but no libraries: ${name} [${pid}] at ${path}"

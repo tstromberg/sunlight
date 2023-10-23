@@ -40,6 +40,7 @@ declare -A expected_low=(
     ["ngn"]=1
     ["nvme"]=1
     ["rtc"]=1
+    ["usbmon"]=1
     ["watchdog"]=1
     ["tpmrm"]=1
     ["vportp"]=1

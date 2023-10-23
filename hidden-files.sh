@@ -16,6 +16,7 @@ sudo find /var /tmp /etc /usr /lib /lib64 /boot /dev/shm /dev/mqueue -maxdepth 2
     \! -name .ICE-unix \
     \! -name .X11-unix \
     \! -name .XIM-unix \
+    \! -name .Test-unix \
     \! -name .bash_logout \
     \! -name .bashrc \
     \! -name .cleanup.user \
