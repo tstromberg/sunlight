@@ -32,4 +32,6 @@ sudo find /var /tmp /etc /usr /lib /lib64 /boot /dev/shm /dev/mqueue -maxdepth 2
     \! -name .DS_Store \
     \! -name .PKInstallSandboxManager \
     \! -path "/Library/Keychains/.*" \
+    \! -name ".*.hmac" \
+    \! -name ".ssh-host-keys-migration" \
     -ls 2>/dev/null
