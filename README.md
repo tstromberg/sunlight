@@ -14,10 +14,10 @@ The following are required:
 * Linux (some checks work on other UNIX platforms)
 * bash
 
-The following are optional but recommended:
+The following tools are optional but highly recommended:
 
-* `osquery`, `curl`, `unzip` - comprehensive process analysis
-* `bpftool`, `jq` - eBPF analysis
+* `osqueryi` - for comprehensive process analysis
+* `bpftool`, `jq` - for eBPF analysis
 
 ## Usage
 
