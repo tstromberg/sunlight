@@ -32,23 +32,31 @@ declare -A expected_major=(
 
 declare -A expected_low=(
     ["bsg/"]=1
+    ["cec"]=1
     ["dma_heap/system"]=1
+    ["drm_dp_aux"]=1
     ["gpiochip"]=1
     ["hidraw"]=1
+    ["iio"]=1
+    ["iiodevice"]=1
     ["media"]=1
     ["mei"]=1
     ["ngn"]=1
     ["nvme"]=1
+    ["pps"]=1
+    ["psp"]=1
+    ["ptp"]=1
     ["rtc"]=1
-    ["usbmon"]=1
-    ["watchdog"]=1
     ["tpmrm"]=1
+    ["usbmon"]=1
     ["vportp"]=1
+    ["watchdog"]=1
 )
 
 declare -A expected_high=(
     ["drm_dp_aux"]=1
-    ["iiodevice"]=1
+    ["media"]=1
+    ["mei"]=1
 )
 
 for path in $(find /dev -type c); do

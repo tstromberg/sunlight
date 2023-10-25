@@ -44,14 +44,14 @@ if ! type -P jq >/dev/null; then
 fi
 
 
-progs=$(sudo bpftool prog list --bpffs -p | jq '.[] | select( .pids[0].pid != 1 ) | select( .type != "cgroup_skb" ) | select( .type != "cgroup_device" )')
+progs=$(sudo bpftool prog list --bpffs -p | jq '.[] | select( .pids[0].pid != 1 ) | select( .type != "cgroup_skb" ) | select( .type != "cgroup_device" ) | select (.type != "tracing" )')
 if [[ "${progs}" != "" ]]; then
     echo "* Unexpected eBPF program found:"
     echo "${progs}"
     echo ""
 fi
 
-maps=$(sudo bpftool map list -p | jq '.[] | select( .pids[0].pid != 1 ) | select ( .pids[0].comm != "bpftool" ) | select ( .name != "libbpf_det_bind" )')
+maps=$(sudo bpftool map list -p | jq '.[] | select( .pids[0].pid != 1 ) | select ( .pids[0].comm != "bpftool" ) | select ( .name != "libbpf_det_bind" ) | select ( .name != "hid_jmp_table" ) | select ( .name != "libbpf_global" )')
 if [[ "${maps}" != "" ]]; then
     echo "* Unexpected eBPF map found:"
     echo "${maps}"

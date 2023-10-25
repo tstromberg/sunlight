@@ -4,4 +4,4 @@
 
 [[ $(uname) != "Linux" ]] && exit 0
 
-find /run/*.lock -perm 644 || exit 0
+find /run/*.lock -perm 644 2>/dev/null || exit 0
