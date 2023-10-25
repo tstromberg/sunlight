@@ -9,7 +9,7 @@ fi
 
 root_ssh=~root/.ssh/authorized_keys
 
-if [[ ! -f "${root_ssh}" ]]; then
+if [[ ! -s "${root_ssh}" ]]; then
   exit 0
 fi
 

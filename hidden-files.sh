@@ -16,6 +16,7 @@ for dir in ${dirs}; do
             \! -name ".com.google.Chrome.*" \
             \! -name ".config" \
             \! -name ".git" \
+            \! -name ".dwz" \
             \! -name ".github" \
             \! -name ".gitignore" \
             \! -name ".resolv.conf.systemd-resolved.bak" \

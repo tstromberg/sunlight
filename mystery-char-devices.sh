@@ -26,6 +26,7 @@ declare -A expected_major=(
     [189]="usb serial"
     [202]="msr"
     [203]="cpu"
+    [204]="ttyAMA"
     [226]="dri"
     [229]="hvc"
 )
