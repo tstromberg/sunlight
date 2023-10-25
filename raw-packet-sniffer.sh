@@ -2,6 +2,8 @@
 #
 # Ignore header and 802.1x (888e) entries
 
+[[ $(uname) != "Linux" ]] && exit 0
+
 if [[ $EUID != 0 ]]; then
   echo "This script requires root"
   exit 1

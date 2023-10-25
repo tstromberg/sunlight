@@ -2,6 +2,8 @@
 #
 # Uncover unexpected programs that are faking their name
 
+[[ $(uname) != "Linux" ]] && exit 0
+
 declare -A expected=(
     ["/bin/bash"]=1
     ["/bin/dash"]=1

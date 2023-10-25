@@ -2,6 +2,8 @@
 #
 # Reveal if there is a hidden /sys/module entry
 
+[[ $(uname) != "Linux" ]] && exit 0
+
 hard_links=$(stat -c '%h' /sys/module)
 visible_entries=$(ls -d /sys/module/* | wc -l)
 hidden_count=$(( $hard_links - ${visible_entries} - 2 ))

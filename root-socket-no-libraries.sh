@@ -2,6 +2,7 @@
 #
 # Reveal processes running as root with a socket but no dependencies outside of libc
 
+[[ $(uname) != "Linux" ]] && exit 0
 
 declare -A false_positive=(
     ["/usr/bin/containerd"]=1

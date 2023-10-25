@@ -56,9 +56,9 @@ for qfile in "${queries[@]}"; do
             --read_max=4096000000 > out.txt 2>&1
 
     if [[ -s out.txt ]]; then
-        echo "${qfile}"
-        echo "==========================================================================================="
+        echo "* MATCHED: ${qfile}"
         cat out.txt
+        echo ""
         matched=1
     fi
 done
